@@ -266,3 +266,17 @@ textarea {
   width:40%;
   margin: 0 auto;
 }
+
+.scores{
+  width: 300px;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  background: #1b1b1b;
+  padding-left: 25px;
+  color: white;
+  font-family: sans-serif;
+  border-bottom-left-radius: 25px;
+  border-top-left-radius: 25px;
+}
