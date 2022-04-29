@@ -9,6 +9,7 @@
 	.st3{font-size:75.2971px;}
 
 </style>
+   
 
 <g id="Layer_1">
 	<g>
@@ -18,8 +19,8 @@
 		<clipPath id="SVGID_00000078736112771791535500000007814377162868302246_">
 			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
 		</clipPath>
-		<g style="clip-path:url(#SVGID_00000078736112771791535500000007814377162868302246_);">
-				<image style="overflow:visible;" width="6260" height="8054" xlink:href="./Golarion_map_web.jpeg"  transform="matrix(3.4793 0 0 3.4793 -14968.2188 -931.6869)">
+		<g style="clip-path:url(#SVGID_00000078736112771791535500000007814377162868302246_); ">
+				<image style="overflow:visible;  "   width="6260" height="8054"  xlink:href="./Golarion_map_web.jpeg"  transform="matrix(3.4793 0 0 3.4793 -14968.2188 -931.6869)">
 			</image>
 		</g>
 	</g>
