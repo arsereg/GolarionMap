@@ -4,14 +4,16 @@ let selectedNodes = [];
 let arcosElements = {};
 let nodosElements = {};
 
+let nodosHash = {};
+
 let ruta = document.getElementById('ruta');
 let peso = document.getElementById('peso');
+let nodoNameInput = document.getElementById('nodoNameInput');
+
+let resultadoBusqueda = document.getElementById('resultadoBusqueda');
 
 ruta.innerText = " "
 peso.innerText = " El peso total de los arcos es: 0"
-
-
-
 
 
 function agregarNodo($evento) {
@@ -24,13 +26,7 @@ function agregarNodo($evento) {
         element.setAttribute('style', 'stroke:black');
     }
 
-    let keysNodos = Object.keys(nodosElements);
-
-    for (let i = 0; i < keysNodos.length; i++) {
-        let key = keysNodos[i];
-        let element = nodosElements[key];
-        element.setAttribute('style', 'fill:white');
-    }
+    clearNodes();
 
     ruta.innerText = " "
     peso.innerText = " El peso total de los arcos es: 0"
@@ -46,7 +42,7 @@ function agregarNodo($evento) {
         selectedNodes.push(name);
         selectedNodes.forEach(e => {
             let element = nodosElements[e];
-            element.setAttribute('style', 'fill:red');
+            element.setAttribute('style', 'fill:red; cursor: pointer;');
         });
     }
 
@@ -176,9 +172,69 @@ svgMap.addEventListener("load", function() {
             console.log(`Nodo nulo: ${nodo}`);
         } else {
             nodosElements[nodo] = nodoSvg;
+            nodoSvg.setAttribute('style', 'cursor: pointer; ');
+            nodosHash[hashCode(nodo)] = nodoSvg
         }
     }
 
 
-
 })
+
+function hashCode(str) {
+    var hash = 0;
+    str = str.toUpperCase();
+    if (str.length == 0) return hash;
+    for (var i = 0; i < str.length; i++) {
+        var char = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return hash;
+}
+
+function buscar(){
+    clearNodes();
+    //extract input from the form
+    let input = nodoNameInput.value;
+    let nodoSvg = nodosHash[hashCode(input)];
+    if(nodoSvg){
+        nodoSvg.setAttribute('style', 'cursor: pointer; fill: green;');
+    }else{
+        if(input.length > 0){
+            alert(`No se encontró el nodo ${input}`);
+        }
+    }
+
+    let nodosKeys = Object.keys(arcosElements)
+        .filter(key => key.includes(input))
+        .map(key => key.replace(input, ''))
+        .map(key => key.replace('-', ''))
+        .map(key => camelCaseToText(key));
+
+    resultadoBusqueda.innerHTML = ''
+    if(input.length > 0){
+        nodosKeys.forEach(nodo => {
+            resultadoBusqueda.innerHTML += `<li>${nodo}</li>`
+        });
+    }
+
+
+
+
+}
+
+
+function clearNodes(){
+    let keysNodos = Object.keys(nodosElements);
+    for (let i = 0; i < keysNodos.length; i++) {
+        let key = keysNodos[i];
+        let element = nodosElements[key];
+        element.setAttribute('style', 'fill:white; cursor: pointer;');
+    }
+}
+
+//convert text from camelcase to readable text
+function camelCaseToText(camelCase) {
+    let text = camelCase.replace(/([A-Z])/g, ' $1');
+    return text.charAt(0).toUpperCase() + text.slice(1);
+}

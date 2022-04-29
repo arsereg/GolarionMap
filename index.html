@@ -40,11 +40,32 @@
                     <br>
                     <h4 id="peso"></h4>
                 </div>
+
+                <div class="scores rounded pb-md-5 ">
+
+                    <h1>Buscar</h1>
+                    <h5>Introduzca el nombre exacto del nodo que desea buscar</h5>
+                    <br>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Nombre del nodo" aria-label="Recipient's username" aria-describedby="button-addon2" id="nodoNameInput">
+                        <button class="btn btn-primary" type="button" id="button-addon2" onclick="buscar()">Button</button>
+                    </div>
+                    <br>
+                    <h4>Resultado:
+                    </h4>
+                    <ul id="resultadoBusqueda">
+
+                    </ul>
+                </div>
+
+
             </div>
 
-            <div class="col-md-6 mt-5   ">
+            <div class="col-md-6 mt-5">
 
-                <object class="mapa" id="svgMap" data="img/Webs.svg" type="image/svg+xml" alt="Golarion"></object>
+                <div class="wrapper">
+                    <object class="mapa" id="svgMap" data="img/Webs.svg" type="image/svg+xml" alt="Golarion"></object>
+                </div>
 
             </div>
         </div>
