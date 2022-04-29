@@ -194,8 +194,7 @@ function hashCode(str) {
 
 function buscar(){
     clearNodes();
-    //extract input from the form
-    let input = nodoNameInput.value;
+    let input = nodoNameInput.value.trim();
     let nodoSvg = nodosHash[hashCode(input)];
     if(nodoSvg){
         nodoSvg.setAttribute('style', 'cursor: pointer; fill: green;');
